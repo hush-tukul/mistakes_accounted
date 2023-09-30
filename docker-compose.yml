@@ -22,8 +22,6 @@ services:
       options:
         max-size: "200k"
         max-file: "10"
-    depends_on:
-      - pg_database
 
   pg_database:
     container_name: "${PG_CONTAINER_NAME}"
