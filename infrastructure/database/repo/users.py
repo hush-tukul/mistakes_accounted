@@ -12,7 +12,7 @@ class UserRepo(BaseRepo):
         self,
         user_id: int,
         full_name: str,
-        language: str,
+        #language: str,
         username: Optional[str] = None,
     ):
         """
@@ -30,7 +30,7 @@ class UserRepo(BaseRepo):
                 user_id=user_id,
                 username=username,
                 full_name=full_name,
-                language=language,
+                #language=language,
             )
             .on_conflict_do_update(
                 index_elements=[User.user_id],
@@ -45,3 +45,10 @@ class UserRepo(BaseRepo):
 
         await self.session.commit()
         return result.scalar_one()
+
+
+# user = await repo.users.get_or_create_user(
+#     user_id=12356,
+#     full_name="John Doe",
+#     username="johndoe",
+# )
