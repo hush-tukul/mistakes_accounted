@@ -16,7 +16,7 @@ async def gate_1_getter(
 ):
     logger.info("You are in profile_getter")
     gate_1_title = (
-        "Welcome, My Friend, to the Restaurant-bot! 🍽️😃 We're ready to serve and help You with Your wishes. 🤖🛎️"
+        "Welcome My Friend to the Restaurant-bot! 🍽️😃 We're ready to serve and help You with Your wishes. 🤖🛎️"
         "\nPlease answer some questions, We're so happy to get to know You better! 😊📝"
         "\n---------------------------------------------"
         "\nWhere from do You know about Us? 🌐🤔"
@@ -75,15 +75,16 @@ async def main_menu(
         else None,
     ]
     
-    return {"title": title, "main_menu": main_menu if main_menu[1] else main_menu[:1]}
+    return {"title": title, "main_menu": main_menu if main_menu[3] else main_menu[:3]}
 
 
-async def menu_sections(
+
+
+
+async def menu_sections_getter(
         dialog_manager: DialogManager, **kwargs
 ):
     logger.info("You are in menu_sections_inline")
-    user_id = dialog_manager.start_data.get("user_id")
-    logger.info(user_id)
     title = "━━ 📚 Menu Sections 📚 ━━"
     menu_sections = [
         ("🍽️ Starters 🍽️", "starters"),
@@ -109,10 +110,7 @@ async def section_photo(
         dialog_manager: DialogManager, **kwargs
 ):
     logger.info("You are in menu_sections_inline")
-    user_id = dialog_manager.start_data.get("user_id")
     section_photo = dialog_manager.dialog_data.get("section_photo")
-    
-    logger.info(user_id)
     menu = {
         "starters": "https://telegra.ph//file/d804cf0420321005602b2.jpg",
         "salads": "https://telegra.ph//file/7951a8916884fbcd998bf.jpg",
@@ -124,4 +122,24 @@ async def section_photo(
     }
     return {
         "section_photo": MediaAttachment(ContentType.PHOTO, url=menu[section_photo]),
+    }
+
+
+async def waiter_call_getter(dialog_manager: DialogManager, **kwargs):
+    logger.info("You are in waiter_call_getter")
+    table_list = [
+        ("1️⃣", "1"),
+        ("2️⃣", "2"),
+        ("3️⃣", "3"),
+        ("4️⃣", "4"),
+        ("5️⃣", "5"),
+        ("6️⃣", "6"),
+        ("7️⃣", "7"),
+        ("8️⃣", "8"),
+        ("9️⃣", "9"),
+        ("🔟", "10"),
+    ]
+
+    return {
+        "table_list": table_list,
     }

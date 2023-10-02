@@ -19,10 +19,14 @@ class Waiter(StatesGroup):
     waiter_call = State()
     waiter_reply = State()
 
+class Feedback(StatesGroup):
+    feedback = State()
+    feedback_reply = State()
 
-class Сontact(StatesGroup):
-    contact_feedback = State()
-    contact_reply = State()
+
+class Admin(StatesGroup):
+    admin_panel = State()
+    admin_add_photo = State()
 
 
 
